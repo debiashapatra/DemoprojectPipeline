@@ -11,5 +11,15 @@ pipeline{
                 bat 'mvn test'
             }
         }
+        stage("Integration test"){
+            steps{
+                bat 'mvn verify -DskipUnitTests'
+            }
+        }
+        stage("Building Jar"){
+            steps{
+                bat 'mvn clean install'
+            }
+        }
     }
 }
