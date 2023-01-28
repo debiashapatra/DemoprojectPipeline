@@ -72,6 +72,7 @@ pipeline{
                 script{
 
                     bat 'docker image build -t democont .'
+                    bat 'docker image tag democont morphin9/democont:latest'
 
                 }
             }
