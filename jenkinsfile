@@ -35,9 +35,9 @@ pipeline{
         stage("Quality gate status"){
             steps{
                 script{
-                    steps{
+                    
                         waitForQualityGate abortPipeline: false, credentialsId: 'jenkins-sonar-key-actual'
-                    }
+                    
                 }
             }
         }
