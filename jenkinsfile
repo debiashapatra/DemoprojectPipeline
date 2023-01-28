@@ -21,12 +21,13 @@ pipeline{
                 bat 'mvn clean install'
             }
         }
-        stage("static code analysis"){
+        stage("Sonar Analysiss"){
             steps{
                 withSonarQubeEnv(credentialsId: 'jenkins-sonar-key') {
                 bat 'mvn clean package sonar:sonar'
         }
             }
+       
         }
     }
 }
