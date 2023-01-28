@@ -24,7 +24,7 @@ pipeline{
         stage("Sonar Analysiss"){
             steps{
                 script{
-             withSonarQubeEnv(credentialsId: 'jenkins-sonar-key') {
+             withSonarQubeEnv(credentialsId: 'jenkins-sonar-key-actual') {
                 bat 'mvn clean package sonar:sonar'
                 }
             }
