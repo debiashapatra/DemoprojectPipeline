@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockertoken')
+		DOCKERHUB_CREDENTIALS = credentials('dockertoken')
 	}
     stages{
         stage("Git checkout"){
@@ -87,7 +87,7 @@ pipeline{
                 script{
 
                 bat 'echo $DOCKERHUB_CREDENTIALS_USR'
-				bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+				bat 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}}
 		}
 
