@@ -81,10 +81,10 @@ pipeline{
         stage("Image pushed to docker"){
             steps{
                 script{
-                   withCredentials([usernameColonPassword(credentialsId: 'docker_pswd', variable: 'docker-id')]) {
+                   withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker-hub')]) {
 
                    
-                    bat 'docker login -u morphin9 -p ${docker-id}'
+                    bat 'docker login -u morphin9 -p ${docker-hub}'
                     bat 'docker image push morphin9/democont'
                     bat 'docker image push morphin9/democont:latest'
                     }
