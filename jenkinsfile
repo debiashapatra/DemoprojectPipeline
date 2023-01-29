@@ -87,22 +87,14 @@ pipeline{
                 script{
   
       	withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-        	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh 'docker push shanem/spring-petclinic:latest'
+        	bat "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+            bat 'docker push morphin9/democont'
+            bat 'docker push morphin9/democont:latest'
         
 			}}
 		}
+        }
 
-        stage('Docker Push') {
-
-			steps {
-				script{
-
-                
-                bat 'docker push morphin9/democont'
-                bat 'docker push morphin9/democont:latest'
-			}}
-		}
 	}
  }
         
