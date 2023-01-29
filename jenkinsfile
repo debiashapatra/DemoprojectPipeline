@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    environment {
+		DOCKERHUB_CREDENTIALS=credentials('docker-int')
+	}
     stages{
         stage("Git checkout"){
             steps{
@@ -78,19 +81,27 @@ pipeline{
             }
         } 
 
-        stage("Image pushed to docker"){
-            steps{
-                script{
-                   withCredentials([string(credentialsId: 'docker-hub-passwd', variable: 'docker-hub-passwd')]) {
+		stage('Docker Login') {
 
-                   
-                    bat 'docker login -u morphin9 -p ${docker-hub-passwd}'
-                    bat 'docker image push morphin9/democont'
-                    bat 'docker image push morphin9/democont:latest'
-                    }
-                }
-            }
-        }
+			steps {
+                script{
+
+                
+				bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}}
+		}
+
+        stage('Docker Push') {
+
+			steps {
+				script{
+
+                
+                bat 'docker push morphin9/democont'
+                bat 'docker push morphin9/democont:latest'
+			}}
+		}
+	}
         }
         
 }
