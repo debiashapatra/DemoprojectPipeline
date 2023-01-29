@@ -81,7 +81,7 @@ pipeline{
         stage("Image pushed to docker"){
             steps{
                 script{
-                   withCredentials([string(credentialsId: 'docker-cred', variable: 'docker_hub_cred')]) {
+                   withCredentials([string(credentialsId: 'docker_pswd', variable: 'docker_hub_cred')]) {
 
                    
                     bat 'docker login -u morphin9 -p ${docker_hub_cred}'
