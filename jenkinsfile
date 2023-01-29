@@ -89,8 +89,8 @@ pipeline{
   
       	withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
         	bat "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-            bat '$JOB_NAME:v1.$BUILD_ID morphin9/$JOB_NAME:v1.$BUILD_ID'
-            bat '$JOB_NAME:v1.$BUILD_ID morphin9/$JOB_NAME:latest'
+            bat 'docker push morphin9/democont'
+            bat 'docker push morphin9/democont:latest'
         
 			}}
 		}
