@@ -69,6 +69,7 @@ pipeline{
                 }
             }
         }  
+	
 
         stage("Docker build image"){
             steps{
